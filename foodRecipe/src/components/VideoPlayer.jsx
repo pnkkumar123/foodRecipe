@@ -33,7 +33,7 @@ const Container = styled.div`
 
 const StyledVideo = styled.video`
   width: 100%;
-  height:400px;
+  height:500px;
   object-fit:cover;
   border-radius:10px;
 `;
