@@ -7,14 +7,17 @@ import { useNavigate } from 'react-router-dom';
 function Category() {
   const navigate = useNavigate();
     const {data,isFetching,error} = useGetRecipeQuery();
-    const [videoUrl,setVideoUrl] = useState('');
+
 
     const handleUrl = (url)=>{
-      navigate('/video',{state:{url}})
+      navigate('/video',{state:{videoUrl:url}})
 
     }
     console.log(data)
-    const limitedResults = data?.results.slice(0,4)
+    const handleRecipe= ()=>{
+      navigate('/full')
+    }
+    const limitedResults = data?.results && data?.results.slice(0,4);
     if(isFetching)return <div>loading....</div>
     if(error)return <div>error</div>
   return (
@@ -22,19 +25,19 @@ function Category() {
       <div className="title">
       <h2 style={{fontWeight:'bold',fontSize:'4em'}}>RECIPES</h2>
      
-        <button>View All</button>
+        <button onClick={()=>handleRecipe()}>View All</button>
       
         </div>
     <div className="recipe">
     {limitedResults && limitedResults.map((items,index)=>{
-      const {video_url,thumbnail_url,name} = items;
+      const {original_video_url,thumbnail_url,name} = items;
       return (
         <div key={index} className='items'>
             <img src={thumbnail_url} alt={name}  />
-            <div className="play-icon" onClick={()=>handleUrl(video_url)}>
+            <div className="play-icon" onClick={()=>handleUrl(original_video_url)}>
             <FaPlay />
             </div>
-            <span>{name}</span>
+            <span >{name}</span>
         </div>
       )
      })}
@@ -85,7 +88,7 @@ justify-content:center;
     padding: 10px;
   }
 .items{
-background-color:rgba(227, 60, 34,0.7);
+background-color:#FFB366;
 margin-left:4px;
 display:flex;
 flex-direction:column;

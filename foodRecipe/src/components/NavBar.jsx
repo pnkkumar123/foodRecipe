@@ -18,7 +18,7 @@ function NavBar() {
 }
 const Wrapper = styled.div`
 display:flex;
-background-color:rgba(227, 60, 34,0.7);
+background-color:#7E354D;
 height:80px;
 width:100%;
 box-shadow:0px 0px #ccc;

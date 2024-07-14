@@ -1,13 +1,42 @@
-import React from 'react'
+import React, { useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
-function VideoPlayer({videoUrl}) {
+function VideoPlayer() {
+  const location = useLocation();
+  const videoUrl = location.state?.videoUrl || '';
+  const videoRef = useRef(null);
+
+  
+
+  if (!videoUrl) {
+    return <Container>No video URL provided</Container>;
+  }
+
   return (
-    <div>
-        <video controls autoPlay>
-            <source src={videoUrl} type='video/mp4'/>
-        </video>
-    </div>
-  )
+    <Container>
+      <StyledVideo controls autoPlay ref={videoRef}>
+        <source src={videoUrl} type="video/mp4" />
+        Your browser does not support the video tag.
+      </StyledVideo>
+      
+    </Container>
+  );
 }
 
-export default VideoPlayer
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+`;
+
+const StyledVideo = styled.video`
+  width: 100%;
+  height:400px;
+  object-fit:cover;
+  border-radius:10px;
+`;
+
+
+export default VideoPlayer;
