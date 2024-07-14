@@ -5,7 +5,7 @@ function NavBar() {
       <nav>
         <Wrapper>
       <div className="logo">
-        <h1>FOOD RECIPE</h1>
+        <h1 style={{marginLeft:'10px'}}>FOOD RECIPE</h1>
       </div>
       <div className="menuItems">
         <span>Dish</span>
@@ -18,7 +18,7 @@ function NavBar() {
 }
 const Wrapper = styled.div`
 display:flex;
-background-color:red;
+background-color:rgba(227, 60, 34,0.7);
 height:80px;
 width:100%;
 box-shadow:0px 0px #ccc;
